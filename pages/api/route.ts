@@ -5,7 +5,8 @@ type ResponseData = {
   message: string;
 };
 
-export const runtime = "edge";
+// The bug only appears for me when edge is not enabled.
+// export const runtime = "edge";
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,5 +22,6 @@ export default async function handler(
     ],
     model: "gpt-3.5-turbo",
   });
+  console.log(result);
   res.status(200).json({ message: JSON.stringify(result) });
 }
