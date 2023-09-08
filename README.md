@@ -1,28 +1,27 @@
-# Create T3 App
+# Bug repro
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+For https://github.com/openai/openai-node/issues/296 and https://github.com/openai/openai-node/issues/297
 
-## What's next? How do I make an app with this?
+Repro steps:
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+```
+yarn
+yarn deploy # accept all default prompts
+# visit /api/route at the provided URL
+# check logs in Vercel, observe:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- info Loaded env from /var/task/.env
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/node_modules/openai/_shims/agent-node.mjs' imported from /var/task/node_modules/openai/core.mjs
+    at new NodeError (node:internal/errors:405:5)
+    at finalizeResolution (node:internal/modules/esm/resolve:329:11)
+    at moduleResolve (node:internal/modules/esm/resolve:992:10)
+    at moduleResolveWithNodePath (node:internal/modules/esm/resolve:936:12)
+    at defaultResolve (node:internal/modules/esm/resolve:1178:79)
+    at nextResolve (node:internal/modules/esm/loader:163:28)
+    at ESMLoader.resolve (node:internal/modules/esm/loader:835:30)
+    at ESMLoader.getModuleJob (node:internal/modules/esm/loader:424:18)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:77:40)
+    at link (node:internal/modules/esm/module_job:76:36) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+```
