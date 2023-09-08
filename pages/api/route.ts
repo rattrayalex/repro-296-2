@@ -5,7 +5,7 @@ type ResponseData = {
   message: string;
 };
 
-// export const runtime = "edge";
+export const runtime = "edge";
 
 export default async function handler(
   req: NextApiRequest,
